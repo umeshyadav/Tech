@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'distribution'
+    id 'net.researchgate.release' version '2.3.5'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://github.com/umeshyadav/Tech.git" }
+}
+
+
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
+
+distributions {
+    main {
+        contents {
+            from('framework/config') {
+                into 'conf'
+                fileMode = 0755
+            }
+            
+            from(jar) {
+                into 'binary'
+            }
+        }
+    }
+    
+ }
+ 
+release {
+    tagTemplate = '$name-$version'
+}
+
+
+
